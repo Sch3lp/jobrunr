@@ -17,7 +17,7 @@ import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.jvm.optionals.getOrNull
 
-@OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class)
 object JobSerializer : KSerializer<Job> {
 	private val jobHistorySerializer = ListSerializer(PolymorphicSerializer(JobState::class))
 	

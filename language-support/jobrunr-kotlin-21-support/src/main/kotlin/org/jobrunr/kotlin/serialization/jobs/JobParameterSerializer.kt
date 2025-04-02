@@ -21,12 +21,6 @@ object JobParameterSerializer : KSerializer<JobParameter> {
 		element("object", AnySerializer<Any>().descriptor)
 	}
 
-	private fun SerializersModule.serializer(className: String, actualClassName: String): KSerializer<Any>? {
-		val actual = JsonMapperUtils.getActualClassName(className, actualClassName)
-		val kClass = Class.forName(actual).kotlin
-		return serializer(kClass as KClass<Any>)
-	}
-
 	private fun Exception.notDeserializable(className: String, actualClassName: String) = JobParameterNotDeserializableException(
 		JsonMapperUtils.getActualClassName(className, actualClassName),
 		message

@@ -11,7 +11,6 @@ import org.jobrunr.storage.JobStatsExtended
 val JOB_STATS_EXTENDED_SERIALIZER_FIELDS = JOB_STATS_SERIALIZER_FIELDS
 	as List<FieldBasedSerializer.Field<JobStatsExtended, out Any>>
 
-@Suppress("UNCHECKED_CAST")
 object JobStatsExtendedSerializer : FieldBasedSerializer<JobStatsExtended>(
 	JobStatsExtended::class,
 	JOB_STATS_EXTENDED_SERIALIZER_FIELDS + listOf(

@@ -37,7 +37,7 @@ class KotlinxSerializationJsonMapper(
 	constructor() : this(jobRunrSerializersModule)
 
 	override fun serialize(obj: Any): String? = rethrowSerializationException {
-		fun <T : Any> encode(obj: Any): String? {
+		fun <T : Any> encode(obj: Any): String {
 			return json.encodeToString(
 				json.serializersModule.serializer(obj::class) as SerializationStrategy<T>?
 					?: throw noSerializerFound(obj::class),

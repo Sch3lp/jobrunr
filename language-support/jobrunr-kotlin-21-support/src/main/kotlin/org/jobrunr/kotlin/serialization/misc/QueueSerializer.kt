@@ -1,4 +1,4 @@
-@file:OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
+@file:OptIn(ExperimentalSerializationApi::class)
 
 package org.jobrunr.kotlin.serialization.misc
 
