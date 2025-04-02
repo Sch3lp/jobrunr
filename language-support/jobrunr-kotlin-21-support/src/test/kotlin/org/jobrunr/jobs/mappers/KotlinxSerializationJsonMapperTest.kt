@@ -2,6 +2,7 @@ package org.jobrunr.jobs.mappers
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
+import org.jobrunr.jobs.mappers.testModule
 import org.jobrunr.kotlin.utils.mapper.KotlinxSerializationJsonMapper
 import org.jobrunr.utils.mapper.AbstractJsonMapperTest
 import org.junit.jupiter.api.Test
