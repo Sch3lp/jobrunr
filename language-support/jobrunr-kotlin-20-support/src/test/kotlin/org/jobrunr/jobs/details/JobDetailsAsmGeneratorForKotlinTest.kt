@@ -583,10 +583,6 @@ class JobDetailsAsmGeneratorForKotlinTest {
                 .hasNoArgs()
     }
 
-    fun bla(job: JobLambda) {
-        job.run()
-    }
-
     fun toJobDetails(job: JobLambda): JobDetails {
         return jobDetailsGenerator.toJobDetails(job)
     }
