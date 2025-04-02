@@ -18,11 +18,10 @@ import java.time.Duration.ofMillis
 
 class JobRequestSchedulerTest {
 
-    private lateinit var storageProvider: StorageProvider
+    private val storageProvider: StorageProvider = InMemoryStorageProvider()
 
     @BeforeEach
     fun setUp() {
-        storageProvider = InMemoryStorageProvider()
         JobRunr.configure()
             .useStorageProvider(storageProvider)
             .useBackgroundJobServer(usingStandardBackgroundJobServerConfiguration().andPollInterval(ofMillis(200)))

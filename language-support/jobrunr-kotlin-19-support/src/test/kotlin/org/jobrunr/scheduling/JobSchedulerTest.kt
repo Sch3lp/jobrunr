@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit
 
 class JobSchedulerTest {
 
-    @Mock
     private val storageProvider = InMemoryStorageProvider().also {
         it.setJobMapper(JobMapper(JacksonJsonMapper()))
     }
@@ -36,13 +35,12 @@ class JobSchedulerTest {
         .initialize()
         .jobScheduler
 
-    private fun <T> get(type: Class<T>): T? {
-        if (type.name == "TestService") {
-            return TestService() as T
-        } else if (type.name == "org.jobrunr.scheduling.KtJobSchedulerTest\$test enqueue lambda with service dependency\$jobId\$1") {
+    private fun <T> get(type: Class<T>): T? = when (type.name) {
+        "org.jobrunr.scheduling.KtJobSchedulerTest\$test enqueue lambda with service dependency\$jobId\$1" -> {
             throw IllegalArgumentException("Should be TestService, no?")
         }
-        return null
+        "TestService" -> TestService() as T
+        else -> null
     }
 
     @Test
