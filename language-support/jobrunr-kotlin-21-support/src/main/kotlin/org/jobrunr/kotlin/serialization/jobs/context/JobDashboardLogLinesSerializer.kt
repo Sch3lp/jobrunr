@@ -39,8 +39,8 @@ object JobDashboardLogLinesSerializer : KSerializer<JobDashboardLogger.JobDashbo
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> decodeStringElement(descriptor, 0)
-				1 -> logLines = decodeSerializableElement(descriptor, 1, ConcurrentLinkedQueueSerializer(JobDashboardLogLineSerializer))
+				0 -> decodeStringElement(descriptor, index)
+				1 -> logLines = decodeSerializableElement(descriptor, index, ConcurrentLinkedQueueSerializer(JobDashboardLogLineSerializer))
 				else -> error("Unexpected index $index")
 			}
 		}
@@ -70,9 +70,9 @@ object JobDashboardLogLineSerializer : KSerializer<JobDashboardLogger.JobDashboa
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> level = decodeSerializableElement(descriptor, 0, LevelSerializer)
-				1 -> logInstant = decodeSerializableElement(descriptor, 1, InstantSerializer)
-				2 -> logMessage = decodeStringElement(descriptor, 2)
+				0 -> level = decodeSerializableElement(descriptor, index, LevelSerializer)
+				1 -> logInstant = decodeSerializableElement(descriptor, index, InstantSerializer)
+				2 -> logMessage = decodeStringElement(descriptor, index)
 				else -> error("Unexpected index: $index")
 			}
 		}

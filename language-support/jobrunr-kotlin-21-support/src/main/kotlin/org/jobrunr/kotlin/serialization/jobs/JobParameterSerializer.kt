@@ -51,11 +51,11 @@ object JobParameterSerializer : KSerializer<JobParameter> {
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> className = decodeStringElement(descriptor, 0)
-				1 -> actualClassName = decodeStringElement(descriptor, 1)
+				0 -> className = decodeStringElement(descriptor, index)
+				1 -> actualClassName = decodeStringElement(descriptor, index)
 				2 -> `object` = try {
 					val elementSerializer = decoder.serializersModule.jobParameterSerializer(className, actualClassName)!!
-					decodeSerializableElement(descriptor, 2, elementSerializer)
+					decodeSerializableElement(descriptor, index, elementSerializer)
 				} catch (e: Exception) {
 					when (e) {
 						is ClassNotFoundException, is SerializationException -> {

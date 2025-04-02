@@ -72,17 +72,17 @@ object RecurringJobSerializer : KSerializer<RecurringJob>, ClassDiscriminatedCon
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> id = decodeStringElement(descriptor, 0)
-				1 -> version = decodeIntElement(descriptor, 1)
-				2 -> jobName = decodeStringElement(descriptor, 2)
-				3 -> amountOfRetries = decodeNullableSerializableElement(descriptor, 3, Int.serializer())
-				4 -> jobSignature = decodeStringElement(descriptor, 4)
-				5 -> labels = decodeSerializableElement(descriptor, 5, ListSerializer(String.serializer()))
-				6 -> jobDetails = decodeSerializableElement(descriptor, 6, JobDetailsSerializer)
-				7 -> scheduleExpression = decodeStringElement(descriptor, 7)
-				8 -> zoneId = decodeStringElement(descriptor, 8)
-				9 -> createdBy = RecurringJob.CreatedBy.valueOf(decodeStringElement(createdByDescriptor, 9))
-				10 -> createdAt = decodeStringElement(descriptor, 10)
+				0 -> id = decodeStringElement(descriptor, index)
+				1 -> version = decodeIntElement(descriptor, index)
+				2 -> jobName = decodeStringElement(descriptor, index)
+				3 -> amountOfRetries = decodeNullableSerializableElement(descriptor, index, Int.serializer())
+				4 -> jobSignature = decodeStringElement(descriptor, index)
+				5 -> labels = decodeSerializableElement(descriptor, index, ListSerializer(String.serializer()))
+				6 -> jobDetails = decodeSerializableElement(descriptor, index, JobDetailsSerializer)
+				7 -> scheduleExpression = decodeStringElement(descriptor, index)
+				8 -> zoneId = decodeStringElement(descriptor, index)
+				9 -> createdBy = RecurringJob.CreatedBy.valueOf(decodeStringElement(createdByDescriptor, index))
+				10 -> createdAt = decodeStringElement(descriptor, index)
 				else -> error("Unexpected index $index")
 			}
 		}

@@ -48,7 +48,7 @@ open class AnySerializer<T : Any> : KSerializer<Any> {
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> type = decodeStringElement(descriptor, 0)
+				0 -> type = decodeStringElement(descriptor, index)
 				1 -> return@decodeStructure decode<T>(type)
 				else -> error("Unexpected index $index")
 			}

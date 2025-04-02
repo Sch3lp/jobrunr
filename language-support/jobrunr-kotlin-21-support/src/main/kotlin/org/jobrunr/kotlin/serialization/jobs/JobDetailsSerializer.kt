@@ -38,11 +38,11 @@ object JobDetailsSerializer : KSerializer<JobDetails> {
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> className = decodeStringElement(descriptor, 0)
-				1 -> staticFieldName = decodeNullableSerializableElement(descriptor, 1, String.serializer())
-				2 -> methodName = decodeStringElement(descriptor, 2)
-				3 -> jobParameters = decodeSerializableElement(descriptor, 3, ListSerializer(JobParameterSerializer))
-				4 -> cacheable = decodeBooleanElement(descriptor, 4)
+				0 -> className = decodeStringElement(descriptor, index)
+				1 -> staticFieldName = decodeNullableSerializableElement(descriptor, index, String.serializer())
+				2 -> methodName = decodeStringElement(descriptor, index)
+				3 -> jobParameters = decodeSerializableElement(descriptor, index, ListSerializer(JobParameterSerializer))
+				4 -> cacheable = decodeBooleanElement(descriptor, index)
 				else -> error("Unexpected index $index")
 			}
 		}

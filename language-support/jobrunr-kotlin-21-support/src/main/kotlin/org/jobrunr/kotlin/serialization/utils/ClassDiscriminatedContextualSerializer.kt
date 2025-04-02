@@ -40,7 +40,7 @@ object ClassDiscriminatedContextualSerializer : KSerializer<Any> {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
 				0 -> {
-					type = decodeStringElement(descriptor, 0)
+					type = decodeStringElement(descriptor, index)
 					
 					val serializer = decoder.serializersModule.serializer(Class.forName(type).kotlin)
 						?: anySerializer

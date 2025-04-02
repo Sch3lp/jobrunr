@@ -67,16 +67,16 @@ object JobSerializer : KSerializer<Job> {
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> id = decodeSerializableElement(descriptor, 0, UUIDSerializer)
-				1 -> version = decodeIntElement(descriptor, 1)
-				2 -> decodeStringElement(descriptor, 2)
-				3 -> jobName = decodeStringElement(descriptor, 3)
-				4 -> labels = decodeSerializableElement(descriptor, 4, ListSerializer(String.serializer()))
-				5 -> jobDetails = decodeSerializableElement(descriptor, 5, JobDetailsSerializer)
-				6 -> jobHistory = decodeSerializableElement(descriptor, 6, jobHistorySerializer)
-				7 -> metadata = decodeSerializableElement(descriptor, 7, MetadataSerializer)
-				8 -> amountOfRetries = decodeNullableSerializableElement(descriptor, 8, Int.serializer())
-				9 -> recurringJobId = decodeNullableSerializableElement(descriptor, 8, String.serializer())
+				0 -> id = decodeSerializableElement(descriptor, index, UUIDSerializer)
+				1 -> version = decodeIntElement(descriptor, index)
+				2 -> decodeStringElement(descriptor, index)
+				3 -> jobName = decodeStringElement(descriptor, index)
+				4 -> labels = decodeSerializableElement(descriptor, index, ListSerializer(String.serializer()))
+				5 -> jobDetails = decodeSerializableElement(descriptor, index, JobDetailsSerializer)
+				6 -> jobHistory = decodeSerializableElement(descriptor, index, jobHistorySerializer)
+				7 -> metadata = decodeSerializableElement(descriptor, index, MetadataSerializer)
+				8 -> amountOfRetries = decodeNullableSerializableElement(descriptor, index, Int.serializer())
+				9 -> recurringJobId = decodeNullableSerializableElement(descriptor, index, String.serializer())
 				else -> error("Unexpected index $index")
 			}
 		}

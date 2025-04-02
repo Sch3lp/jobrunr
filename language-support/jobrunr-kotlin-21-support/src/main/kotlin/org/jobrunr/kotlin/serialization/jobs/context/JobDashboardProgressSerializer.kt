@@ -32,11 +32,11 @@ object JobDashboardProgressSerializer : KSerializer<JobDashboardProgressBar.JobD
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> decodeStringElement(descriptor, 0)
-				1 -> totalAmount = decodeLongElement(descriptor, 0)
-				2 -> succeededAmount = decodeLongElement(descriptor, 1)
-				3 -> failedAmount = decodeLongElement(descriptor, 2)
-				4 -> decodeIntElement(descriptor, 3)
+				0 -> decodeStringElement(descriptor, index)
+				1 -> totalAmount = decodeLongElement(descriptor, index)
+				2 -> succeededAmount = decodeLongElement(descriptor, index)
+				3 -> failedAmount = decodeLongElement(descriptor, index)
+				4 -> decodeIntElement(descriptor, index)
 				else -> error("Unexpected index $index")
 			}
 		}

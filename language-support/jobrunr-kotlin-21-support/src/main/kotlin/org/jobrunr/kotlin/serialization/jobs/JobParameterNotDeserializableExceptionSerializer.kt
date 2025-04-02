@@ -24,8 +24,8 @@ object JobParameterNotDeserializableExceptionSerializer : KSerializer<JobParamet
 		while (true) {
 			when (val index = decodeElementIndex(descriptor)) {
 				CompositeDecoder.DECODE_DONE -> break
-				0 -> className = decodeStringElement(descriptor, 0)
-				1 -> exceptionMessage = decodeStringElement(descriptor, 1)
+				0 -> className = decodeStringElement(descriptor, index)
+				1 -> exceptionMessage = decodeStringElement(descriptor, index)
 				else -> error("Unexpected index $index")
 			}
 		}
